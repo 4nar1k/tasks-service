@@ -1,9 +1,7 @@
-github.com/4nar1k/project-protos v0.0.0-20250614000245-f5515fcb13d7 h1:s7nJuNYZHd7CgMQhFz+Dlkbe3cv62m98VDdeGou9hPc=
-github.com/4nar1k/project-protos v0.0.0-20250614000245-f5515fcb13d7/go.mod h1:FsZefSBL4brtNQGdojxrjLdoiyIPjITh25Z6oiL17LQ=
-github.com/4nar1k/project-protos v0.0.0-20250614011633-01417ebde025 h1:k75+6ZIqnoVT/cPx9jMwjIjtASgK/qMCsyGc0xGnCPM=
-github.com/4nar1k/project-protos v0.0.0-20250614011633-01417ebde025/go.mod h1:FsZefSBL4brtNQGdojxrjLdoiyIPjITh25Z6oiL17LQ=
 github.com/4nar1k/project-protos v0.0.0-20250614023546-3bd1aaf635e5 h1:BJg5h8GvsNMWSrHRBF4NrMowmS6osatRu46crskBg3c=
 github.com/4nar1k/project-protos v0.0.0-20250614023546-3bd1aaf635e5/go.mod h1:FsZefSBL4brtNQGdojxrjLdoiyIPjITh25Z6oiL17LQ=
+github.com/4nar1k/project-protos v0.0.0-20250614071256-900d4be47b6c h1:xgez8pE/cGhZqgy8QY5BAt3xAnEzpdf2e5w/P11nRWE=
+github.com/4nar1k/project-protos v0.0.0-20250614071256-900d4be47b6c/go.mod h1:FsZefSBL4brtNQGdojxrjLdoiyIPjITh25Z6oiL17LQ=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

@@ -3,7 +3,7 @@ module github.com/4nar1k/tasks-service
 go 1.24.4
 
 require (
-	github.com/4nar1k/project-protos v0.0.0-20250614023546-3bd1aaf635e5
+	github.com/4nar1k/project-protos v0.0.0-20250614071256-900d4be47b6c
 	github.com/sirupsen/logrus v1.9.3
 	google.golang.org/grpc v1.73.0
 	gorm.io/driver/postgres v1.6.0
