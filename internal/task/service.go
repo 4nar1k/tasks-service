@@ -30,6 +30,9 @@ func (s *TaskService) CreateTask(task Task) (Task, error) {
 
 	return s.repo.CreateTask(task)
 }
+func (s *TaskService) GetTaskByID(id uint32) (Task, error) {
+	return s.repo.GetTaskByID(id)
+}
 
 func (s *TaskService) GetAllTasks() ([]Task, error) {
 	return s.repo.GetAllTasks()

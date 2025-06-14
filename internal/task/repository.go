@@ -1,6 +1,7 @@
 package task
 
 import (
+	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
 
@@ -10,6 +11,7 @@ type TaskRepository interface {
 	GetTasksByUserID(userID uint32) ([]Task, error)
 	UpdateTaskByID(id uint32, task Task) (Task, error)
 	DeleteTaskByID(id uint32) error
+	GetTaskByID(id uint32) (Task, error)
 }
 
 type taskRepository struct {
@@ -60,4 +62,13 @@ func (r *taskRepository) UpdateTaskByID(id uint32, task Task) (Task, error) {
 func (r *taskRepository) DeleteTaskByID(id uint32) error {
 	result := r.db.Delete(&Task{}, id)
 	return result.Error
+}
+func (r *taskRepository) GetTaskByID(id uint32) (Task, error) {
+	var task Task
+	err := r.db.First(&task, id).Error
+	if err != nil {
+		logrus.WithError(err).Errorf("Failed to get task by ID: %d", id)
+		return Task{}, err
+	}
+	return task, nil
 }

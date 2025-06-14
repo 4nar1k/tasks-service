@@ -51,27 +51,19 @@ func (h *Handler) GetTask(ctx context.Context, req *taskpb.GetTaskRequest) (*tas
 	if req.GetId() == 0 {
 		return nil, status.Errorf(codes.InvalidArgument, "id is required")
 	}
-	if req.GetUserId() == 0 {
-		return nil, status.Errorf(codes.InvalidArgument, "user_id is required")
-	}
 
-	tasks, err := h.svc.GetTasksByUserID(req.GetUserId())
+	t, err := h.svc.GetTaskByID(req.GetId())
 	if err != nil {
-		return nil, status.Errorf(codes.Internal, "failed to get tasks: %v", err)
+		logrus.WithError(err).Errorf("Failed to get task by ID: %d", req.GetId())
+		return nil, status.Errorf(codes.NotFound, "task with id %d not found: %v", req.GetId(), err)
 	}
 
-	for _, t := range tasks {
-		if uint32(t.ID) == req.GetId() {
-			return &taskpb.Task{
-				Id:     uint32(t.ID),
-				Title:  t.Title,
-				IsDone: t.IsDone,
-				UserId: t.UserID,
-			}, nil
-		}
-	}
-
-	return nil, status.Errorf(codes.NotFound, "task with id %d not found", req.GetId())
+	return &taskpb.Task{
+		Id:     uint32(t.ID),
+		Title:  t.Title,
+		IsDone: t.IsDone,
+		UserId: t.UserID,
+	}, nil
 }
 
 func (h *Handler) ListTasks(ctx context.Context, req *taskpb.ListTasksRequest) (*taskpb.ListTasksResponse, error) {
