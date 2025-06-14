@@ -66,7 +66,7 @@ func (h *Handler) GetTask(ctx context.Context, req *taskpb.GetTaskRequest) (*tas
 	}, nil
 }
 
-func (h *Handler) ListTasks(ctx context.Context, req *taskpb.ListTasksRequest) (*taskpb.ListTasksResponse, error) {
+func (h *Handler) ListTasksForUser(ctx context.Context, req *taskpb.ListTasksForUserRequest) (*taskpb.ListTasksForUserResponse, error) {
 	if req.GetUserId() == 0 {
 		return nil, status.Errorf(codes.InvalidArgument, "user_id is required")
 	}
@@ -86,7 +86,7 @@ func (h *Handler) ListTasks(ctx context.Context, req *taskpb.ListTasksRequest) (
 		})
 	}
 
-	return &taskpb.ListTasksResponse{Tasks: protoTasks}, nil
+	return &taskpb.ListTasksForUserResponse{Tasks: protoTasks}, nil
 }
 
 func (h *Handler) UpdateTask(ctx context.Context, req *taskpb.UpdateTaskRequest) (*taskpb.UpdateTaskResponse, error) {
@@ -174,7 +174,7 @@ func (h *Handler) DeleteTask(ctx context.Context, req *taskpb.DeleteTaskRequest)
 	return &taskpb.DeleteTaskResponse{Success: true}, nil
 }
 
-func (h *Handler) ListAllTasks(ctx context.Context, req *taskpb.ListAllTasksRequest) (*taskpb.ListAllTasksResponse, error) {
+func (h *Handler) ListTasks(ctx context.Context, req *taskpb.ListTasksRequest) (*taskpb.ListTasksResponse, error) {
 	logrus.Info("ListAllTasks: fetching all tasks")
 	tasks, err := h.svc.GetAllTasks()
 	if err != nil {
@@ -193,5 +193,5 @@ func (h *Handler) ListAllTasks(ctx context.Context, req *taskpb.ListAllTasksRequ
 	}
 
 	logrus.Infof("ListAllTasks: found %d tasks", len(protoTasks))
-	return &taskpb.ListAllTasksResponse{Tasks: protoTasks}, nil
+	return &taskpb.ListTasksResponse{Tasks: protoTasks}, nil
 }
