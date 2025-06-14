@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	db "github.com/4nar1k/tasks-service/internal/database"
@@ -8,13 +8,11 @@ import (
 )
 
 func main() {
-	// 1. Инициализация БД
 	dbInstance, err := db.InitDB()
 	if err != nil {
 		log.Fatalf("failed to initialize database: %v", err)
 	}
 
-	// 2. Репозиторий и сервис задач
 	repo := tasksvc.NewTaskRepository(dbInstance)
 	userClient, conn, err := transportgrpc.NewUserClient("localhost:50051")
 	if err != nil {
@@ -24,7 +22,6 @@ func main() {
 
 	svc := tasksvc.NewTaskService(repo, userClient) // Добавлен userClient
 
-	// 3. Запуск gRPC Tasks-сервиса
 	if err := transportgrpc.RunGRPC(svc, userClient); err != nil {
 		log.Fatalf("Tasks gRPC server error: %v", err)
 	}

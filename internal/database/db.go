@@ -2,6 +2,7 @@ package database
 
 import (
 	"errors"
+	"github.com/4nar1k/project-protos/proto/task"
 	"github.com/4nar1k/project-protos/proto/user"
 	"github.com/sirupsen/logrus"
 	"gorm.io/driver/postgres"
@@ -22,8 +23,7 @@ func InitDB() (*gorm.DB, error) {
 		return nil, err
 	}
 
-	// Автомиграция модели User
-	if err := db.AutoMigrate(&user.User{}); err != nil {
+	if err := db.AutoMigrate(&user.User{}, &task.Task{}); err != nil {
 		logrus.WithError(err).Error("Failed to auto-migrate User model")
 		return nil, err
 	}

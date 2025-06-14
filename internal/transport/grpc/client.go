@@ -6,13 +6,11 @@ import (
 )
 
 func NewUserClient(addr string) (userpb.UserServiceClient, *grpc.ClientConn, error) {
-	// Устанавливаем соединение с Users-сервисом
 	conn, err := grpc.Dial(addr, grpc.WithInsecure())
 	if err != nil {
 		return nil, nil, err
 	}
 
-	// Создаем клиента для Users-сервиса
 	client := userpb.NewUserServiceClient(conn)
 
 	return client, conn, nil

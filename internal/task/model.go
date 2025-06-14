@@ -1,15 +1,13 @@
 package task
 
-import "gorm.io/gorm"
-
 type Task struct {
-	gorm.Model
-	Task   string `json:"task"`
-	IsDone bool   `json:"is_done" gorm:"not null"`
-	UserID uint32 `json:"user_id" gorm:"not null;index"`
-	User   User   `gorm:"constraint:OnDelete:CASCADE;"` // Связь с каскадным удалением
+	ID     uint32 `gorm:"primaryKey;autoIncrement" json:"id"`
+	Title  string `gorm:"type:text;not null" json:"title"`
+	IsDone bool   `gorm:"not null;default:false" json:"is_done"`
+	UserID uint32 `gorm:"not null;index" json:"user_id"`
+	User   User   `gorm:"constraint:OnDelete:CASCADE;"`
 }
 
 type User struct {
-	ID uint32 `gorm:"primaryKey"`
+	ID uint32 `gorm:"primaryKey" json:"id"`
 }

@@ -46,7 +46,7 @@ func (r *taskRepository) UpdateTaskByID(id uint32, task Task) (Task, error) {
 		return Task{}, err
 	}
 
-	existingTask.Task = task.Task
+	existingTask.Title = task.Title
 	existingTask.IsDone = task.IsDone
 
 	result := r.db.Save(&existingTask)
